@@ -2,6 +2,7 @@
 import { EVAL_CASES } from "./lib/evalcases.js";
 import { scoreCase, summarize } from "./lib/evalscore.js";
 import { getProblem } from "./lib/problems.js";
+import { PROMPT_VERSION } from "./lib/prompt.js";
 
 const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -30,6 +31,11 @@ function flagsFor(s, c) {
   if (s.tooLong) f.push(`too long (${s.sentences} sentences)`);
   if (s.openerMismatch) f.push("opener doesn't fit");
   if (s.praisesSmart) f.push("praises being smart");
+  if (s.rung1NamesMethod) f.push("nudge names the method");
+  if (s.stockOpener) f.push("stock opener");
+  if (s.emDash) f.push("em dash");
+  if (s.markdown) f.push("markdown");
+  if (s.mentionsApp) f.push('says "the app"');
   return f;
 }
 
@@ -65,9 +71,9 @@ async function run() {
   const sum = summarize(EVAL_CASES, scores);
   const stamp = new Date().toISOString();
   $("summary").hidden = false;
-  $("summary").textContent = `EVAL SUMMARY (${stamp})\n` + Object.entries(sum).map(([k, v]) => `${k}: ${v}`).join("\n");
+  $("summary").textContent = `EVAL SUMMARY (${stamp}), prompt ${PROMPT_VERSION}\n` + Object.entries(sum).map(([k, v]) => `${k}: ${v}`).join("\n");
   $("json").hidden = false;
-  $("json").value = JSON.stringify({ stamp, summary: sum, results: raw }, null, 1);
+  $("json").value = JSON.stringify({ stamp, prompt: PROMPT_VERSION, summary: sum, results: raw }, null, 1);
   $("status").textContent = "Done.";
   $("run").disabled = false;
 }
