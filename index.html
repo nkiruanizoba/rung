@@ -7,20 +7,20 @@
   <meta name="description" content="Rung is a free AI math tutor for grade 6 and 7 ratios. It never gives the answer. It gives one hint at a time, and you do the climbing." />
   <meta property="og:title" content="Rung · One rung at a time" />
   <meta property="og:description" content="A Socratic AI math tutor for ratios and proportions. Hints, not answers." />
-  <meta name="theme-color" content="#FAF7F2" />
+  <meta name="theme-color" content="#FBF7F0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15181E" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="top">
     <div class="brand">
-      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M9 3v26M23 3v26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M9 9h14M9 16h14M9 23h14" stroke="var(--rung)" stroke-width="3" stroke-linecap="round"/>
-      </svg>
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M10 5v22M22 5v22" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M10 10.5h12M10 16h12M10 21.5h12" stroke="#F2A33A" stroke-width="3" stroke-linecap="round"/></svg>
+      </span>
       <div>
         <h1>Rung</h1>
         <p class="tagline">One rung at a time.</p>
@@ -42,17 +42,11 @@
       <div class="problem-meta">
         <span class="pill" id="skillPill">Skill</span>
         <span class="muted small" id="standard"></span>
+        <span class="checked-note small" title="Answers are checked with exact arithmetic, never by the AI">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Checked by code</span>
       </div>
       <p class="question" id="question">Loading…</p>
-      <div class="ladder" aria-label="Rungs of help used">
-        <span class="ladder-label small muted">Help used</span>
-        <ol class="rungs" id="rungs">
-          <li data-rung="1"><span class="dot"></span>Nudge</li>
-          <li data-rung="2"><span class="dot"></span>Hint</li>
-          <li data-rung="3"><span class="dot"></span>Example</li>
-          <li data-rung="4"><span class="dot"></span>Walkthrough</li>
-        </ol>
-      </div>
     </section>
 
     <section class="thread" id="thread" aria-live="polite" aria-label="Conversation with Rung"></section>
@@ -68,15 +62,31 @@
   </main>
 
   <div class="composer" id="composer">
+    <div class="ladder" id="ladder" aria-live="polite">
+      <div class="ladder-head">
+        <span class="ladder-title">Help used</span>
+        <span class="ladder-status" id="ladderStatus">No help yet</span>
+      </div>
+      <ol class="rungs" id="rungs" aria-label="Rungs of help used">
+        <li data-rung="1"><span class="bar"></span><span class="lbl">Nudge</span></li>
+        <li data-rung="2"><span class="bar"></span><span class="lbl">Hint</span></li>
+        <li data-rung="3"><span class="bar"></span><span class="lbl">Example</span></li>
+        <li data-rung="4"><span class="bar"></span><span class="lbl">Walkthrough</span></li>
+      </ol>
+    </div>
     <form class="answer-row" id="answerForm" autocomplete="off">
       <label class="sr-only" for="answerInput">Your answer or question</label>
       <input id="answerInput" type="text" inputmode="text" maxlength="300"
-             placeholder="Answer, like 12, 5/8, or 3:4" />
+             placeholder="e.g. 11, 2/9 or 5:11" />
       <button class="btn primary" id="checkBtn" type="submit">Check</button>
     </form>
     <div class="row helpers" id="helperRow">
-      <button class="btn" id="hintBtn" type="button">Hint <span class="small" id="hintNext"></span></button>
-      <button class="btn" id="askBtn" type="button">Ask Rung</button>
+      <button class="btn" id="hintBtn" type="button">
+        <svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3v14M14 3v14M6 7h8M6 11h8M6 15h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span id="hintNext">Get a nudge</span></button>
+      <button class="btn" id="askBtn" type="button">
+        <svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Ask Rung</button>
     </div>
     <div class="row" id="nextRow" hidden>
       <button class="btn primary wide" id="nextBtn" type="button">Next problem →</button>

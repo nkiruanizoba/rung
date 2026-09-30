@@ -3,7 +3,7 @@
 import { PROBLEMS, SKILLS, getProblem } from "./lib/problems.js";
 import { checkAnswer } from "./lib/checker.js";
 import { BKT, countsAsWin, MAX_RUNG_FOR_WIN, newProgress, chooseNext, chooseSimilar, recordOutcome, markSeen, isMastered, unlockedSkills } from "./lib/mastery.js";
-import { fallbackReply, RUNGS } from "./lib/teaching.js";
+import { fallbackReply, RUNGS, FORMAT_EXAMPLES as EX, PLACEHOLDER } from "./lib/teaching.js";
 
 const STORE_KEY = "rung.progress.v1";
 const $ = (id) => document.getElementById(id);
@@ -37,10 +37,13 @@ const state = {
 };
 
 // ---------- rendering
+const LOCK = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+const TICK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
 function renderSkills() {
   const unlocked = unlockedSkills(state.progress);
   $("skillList").innerHTML = "";
-  for (const s of SKILLS) {
+  SKILLS.forEach((s, i) => {
     const st = state.progress.skills[s.id];
     const mastered = isMastered(state.progress, s.id);
     const locked = !unlocked.includes(s.id) && !mastered;
@@ -49,20 +52,31 @@ function renderSkills() {
     li.className = "skill" + (mastered ? " mastered" : "") + (locked ? " locked" : "") +
       (state.problem && state.problem.skill === s.id ? " current" : "");
     const label = mastered ? "Mastered" : locked ? "Locked" : st.attempts ? "Learning" : "Ready";
-    li.innerHTML = `<span class="name"><span class="full"></span><span class="short"></span></span><div class="bar"><span style="width:${pct}%"></span></div><span class="state">${label}</span>`;
+    const inner = mastered ? TICK : locked ? LOCK : String(i + 1);
+    li.innerHTML = `<span class="node" style="--pct:${locked ? 0 : pct}"><span class="core">${inner}</span></span>` +
+      `<span class="name"><span class="full"></span><span class="short"></span></span><span class="state">${label}</span>`;
     li.querySelector(".full").textContent = s.name;
     li.querySelector(".short").textContent = s.short;
     li.title = `${s.name} (${s.standard}): ${label}`;
     $("skillList").appendChild(li);
-  }
+  });
 }
 
+let litRung = 0;
 function renderRungs() {
   document.querySelectorAll("#rungs li").forEach((li) => {
-    li.classList.toggle("on", Number(li.dataset.rung) <= state.rung);
+    const n = Number(li.dataset.rung);
+    li.classList.toggle("on", n <= state.rung);
+    li.classList.toggle("just-lit", n === state.rung && state.rung > litRung);
   });
+  litRung = state.rung;
   const next = Math.min(state.rung + 1, 4);
-  $("hintNext").textContent = state.rung >= 4 ? "" : `(${RUNGS[next].name.toLowerCase()})`;
+  const NEXT_LABEL = { 1: "Get a nudge", 2: "Get a hint", 3: "See an example", 4: "Walk me through it" };
+  $("hintNext").textContent = state.rung >= 4 ? "All rungs used" : NEXT_LABEL[next];
+  $("ladder").classList.toggle("active", state.rung > 0);
+  $("ladderStatus").textContent = state.rung === 0
+    ? "No help yet"
+    : `Rung ${state.rung} of 4: ${RUNGS[state.rung].name}`;
 }
 
 function renderControls() {
@@ -79,6 +93,12 @@ function addMsg(role, text, extra = {}) {
   const div = document.createElement("div");
   div.className = `msg ${role}`;
   if (role === "tutor") {
+    div.classList.add("has-avatar");
+    const av = document.createElement("span");
+    av.className = "avatar";
+    av.setAttribute("aria-hidden", "true");
+    av.innerHTML = '<svg viewBox="0 0 32 32"><path d="M10 5v22M22 5v22" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round"/><path d="M10 10.5h12M10 16h12M10 21.5h12" stroke="#F2A33A" stroke-width="3" stroke-linecap="round"/></svg>';
+    div.appendChild(av);
     const who = document.createElement("span");
     who.className = "who";
     who.textContent = extra.rung ? `Rung · ` : "Rung";
@@ -107,7 +127,8 @@ function addVerdict(kind, text) {
 function addTyping() {
   const div = document.createElement("div");
   div.className = "msg tutor";
-  div.innerHTML = `<span class="who">Rung</span><span class="typing" aria-label="Rung is thinking"><i></i><i></i><i></i></span>`;
+  div.classList.add("has-avatar");
+  div.innerHTML = `<span class="avatar" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M10 5v22M22 5v22" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round"/><path d="M10 10.5h12M10 16h12M10 21.5h12" stroke="#F2A33A" stroke-width="3" stroke-linecap="round"/></svg></span><span class="who">Rung</span><span class="typing" aria-label="Rung is thinking"><i></i><i></i><i></i></span>`;
   $("thread").appendChild(div);
   scrollDown();
   return div;
@@ -122,6 +143,8 @@ function showProblem(problem) {
   if (!problem) return showDone();
   $("doneCard").hidden = true;
   $("problemCard").hidden = false;
+  $("ladder").hidden = false;
+  litRung = 0;
   Object.assign(state, { problem, rung: 0, recorded: false, wrongCount: 0, history: [], phase: "solving" });
   markSeen(state.progress, problem.id);
   saveProgress();
@@ -149,6 +172,7 @@ function showDone() {
   $("answerForm").hidden = true;
   $("helperRow").hidden = true;
   $("nextRow").hidden = true;
+  $("ladder").hidden = true;
   renderSkills();
 }
 
@@ -178,7 +202,7 @@ async function onCheck(raw) {
   const result = checkAnswer(state.problem, text);
   if (result.status === "unparsed") {
     addMsg("student", text);
-    addMsg("tutor", "I couldn't read that as an answer. Try a number like 12, a fraction like 5/8, or a ratio like 3:4.\n\nIf you meant to ask me something, tap Ask Rung instead.");
+    addMsg("tutor", `I couldn't read that as an answer. Try a number like ${EX.number}, a fraction like ${EX.fraction}, or a ratio like ${EX.ratio}.\n\nIf you meant to ask me something, tap Ask Rung instead.`);
     return;
   }
   addMsg("student", text);
@@ -201,7 +225,7 @@ async function onCheck(raw) {
   }
   if (result.status === "format") {
     const msg = {
-      needs_ratio: "This one asks for a ratio. Write it with two numbers, like 2:5.",
+      needs_ratio: `This one asks for a ratio. Write it with two numbers, like ${EX.ratio}.`,
       needs_number: "This one needs a single number, not a ratio.",
       needs_percent: "Right idea! Now write it as a percent.",
     }[result.reason];
@@ -210,7 +234,7 @@ async function onCheck(raw) {
     return;
   }
   // wrong: climb one rung and get a targeted hint
-  addVerdict("bad", "Not quite · checked by code");
+  addVerdict("bad", "✗ Not quite · checked by code");
   state.wrongCount += 1;
   record(false);
   state.rung = Math.min(state.rung + 1, 4);
@@ -287,6 +311,7 @@ function reset() {
 }
 
 // ---------- wire up
+$("answerInput").placeholder = PLACEHOLDER;
 $("answerForm").addEventListener("submit", (e) => { e.preventDefault(); onCheck($("answerInput").value); });
 $("hintBtn").addEventListener("click", onHint);
 $("askBtn").addEventListener("click", onAsk);

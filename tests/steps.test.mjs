@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { PROBLEMS, getProblem } from "../lib/problems.js";
 import { checkAnswer } from "../lib/checker.js";
 import { detectLeak } from "../lib/leak.js";
-import { fallbackReply } from "../lib/teaching.js";
+import { fallbackReply, FORMAT_EXAMPLES, PLACEHOLDER } from "../lib/teaching.js";
 import { fromDecimalString, frac, mul, div, eq } from "../lib/fraction.js";
 
 const OPS = {
@@ -73,5 +73,19 @@ test("fallback hints for rungs 1 to 3 never leak; the rung 4 walkthrough does co
       }
     }
     assert.equal(detectLeak(p, fallbackReply(p, 4, null)).leaked, true, `${p.id} walkthrough should contain answer`);
+  }
+});
+
+test("example answers shown to students never match any answer or tagged wrong answer", () => {
+  const examples = Object.values(FORMAT_EXAMPLES);
+  for (const p of PROBLEMS) {
+    for (const ex of examples) {
+      // graded as correct, simplify, or a tagged wrong answer would mean the example gives something away
+      const r = checkAnswer(p, ex);
+      assert.notEqual(r.status, "correct", `${p.id}: example ${ex} is the answer`);
+      assert.notEqual(r.status, "simplify", `${p.id}: example ${ex} is equivalent to the answer`);
+      if (r.status === "wrong") assert.equal(r.tag, null, `${p.id}: example ${ex} is a tagged wrong answer`);
+    }
+    for (const ex of examples) assert.ok(PLACEHOLDER.includes(ex));
   }
 });
