@@ -1,0 +1,468 @@
+[
+ {
+  "id": "r01",
+  "skill": "S1",
+  "context": "class",
+  "question": "A class has 12 girls and 16 boys. What is the ratio of girls to boys, in simplest form?",
+  "answer_type": "ratio",
+  "answer": [
+   3,
+   4
+  ],
+  "known_wrong": [
+   {
+    "value": [
+     4,
+     3
+    ],
+    "tag": "M2"
+   },
+   {
+    "value": [
+     3,
+     7
+    ],
+    "tag": "M3"
+   },
+   {
+    "value": [
+     12,
+     28
+    ],
+    "tag": "M3"
+   }
+  ],
+  "simplest": true
+ },
+ {
+  "id": "r02",
+  "skill": "S1",
+  "context": "fruit",
+  "question": "A fruit bowl has 5 apples and 3 oranges. What fraction of all the fruit is apples?",
+  "answer_type": "fraction",
+  "answer": [
+   5,
+   8
+  ],
+  "known_wrong": [
+   {
+    "value": [
+     5,
+     3
+    ],
+    "tag": "M3"
+   },
+   {
+    "value": [
+     3,
+     8
+    ],
+    "tag": "M3"
+   }
+  ]
+ },
+ {
+  "id": "r03",
+  "skill": "S1",
+  "context": "smoothie",
+  "question": "A smoothie uses 2 cups of strawberries for every 3 cups of yogurt. What is the ratio of yogurt to strawberries?",
+  "answer_type": "ratio",
+  "answer": [
+   3,
+   2
+  ],
+  "known_wrong": [
+   {
+    "value": [
+     2,
+     3
+    ],
+    "tag": "M2"
+   },
+   {
+    "value": [
+     3,
+     5
+    ],
+    "tag": "M3"
+   }
+  ],
+  "simplest": true
+ },
+ {
+  "id": "r04",
+  "skill": "S1",
+  "context": "sports",
+  "question": "A soccer team won 18 games and lost 6. What is the ratio of wins to total games played, in simplest form?",
+  "answer_type": "ratio",
+  "answer": [
+   3,
+   4
+  ],
+  "known_wrong": [
+   {
+    "value": [
+     3,
+     1
+    ],
+    "tag": "M3"
+   },
+   {
+    "value": [
+     1,
+     4
+    ],
+    "tag": "M3"
+   },
+   {
+    "value": [
+     4,
+     3
+    ],
+    "tag": "M2"
+   }
+  ],
+  "simplest": true
+ },
+ {
+  "id": "r05",
+  "skill": "S2",
+  "context": "baking",
+  "question": "A cookie recipe uses 3 cups of flour for every 2 cups of sugar. How many cups of flour go with 8 cups of sugar?",
+  "answer_type": "number",
+  "answer": 12,
+  "known_wrong": [
+   {
+    "value": 9,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 16,
+     "den": 3
+    },
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r06",
+  "skill": "S2",
+  "context": "art",
+  "question": "A paint mix uses 4 cups of blue for every 6 cups of yellow. How many cups of yellow go with 10 cups of blue?",
+  "answer_type": "number",
+  "answer": 15,
+  "known_wrong": [
+   {
+    "value": 12,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 20,
+     "den": 3
+    },
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r07",
+  "skill": "S2",
+  "context": "running",
+  "question": "Jada runs 5 laps every 2 minutes. At the same pace, how many minutes does it take her to run 15 laps?",
+  "answer_type": "number",
+  "answer": 6,
+  "known_wrong": [
+   {
+    "value": 12,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 75,
+     "den": 2
+    },
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r08",
+  "skill": "S2",
+  "context": "ratio table",
+  "question": "Fill in the missing number so the ratios are equivalent: 6 : 9 = 12 : ?",
+  "answer_type": "number",
+  "answer": 18,
+  "known_wrong": [
+   {
+    "value": 15,
+    "tag": "M1"
+   },
+   {
+    "value": 8,
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r09",
+  "skill": "S3",
+  "context": "travel",
+  "question": "A car travels 150 miles in 3 hours at a steady speed. How many miles does it travel per hour?",
+  "answer_type": "number",
+  "answer": 50,
+  "known_wrong": [
+   {
+    "value": {
+     "num": 1,
+     "den": 50
+    },
+    "tag": "M4"
+   },
+   {
+    "value": 450,
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r10",
+  "skill": "S3",
+  "context": "shopping",
+  "question": "A pack of 12 pencils costs $3. How much does one pencil cost, in dollars?",
+  "answer_type": "number",
+  "answer": {
+   "num": 1,
+   "den": 4
+  },
+  "known_wrong": [
+   {
+    "value": 4,
+    "tag": "M4"
+   },
+   {
+    "value": 36,
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r11",
+  "skill": "S3",
+  "context": "reading",
+  "question": "Maya reads 45 pages in 1.5 hours. How many pages does she read per hour?",
+  "answer_type": "number",
+  "answer": 30,
+  "known_wrong": [
+   {
+    "value": {
+     "num": 1,
+     "den": 30
+    },
+    "tag": "M4"
+   },
+   {
+    "value": {
+     "num": 135,
+     "den": 2
+    },
+    "tag": "M4"
+   },
+   {
+    "value": {
+     "num": 89,
+     "den": 2
+    },
+    "tag": "M1"
+   }
+  ]
+ },
+ {
+  "id": "r12",
+  "skill": "S3",
+  "context": "printing",
+  "question": "A printer prints 84 pages in 7 minutes. At the same rate, how many pages does it print in 12 minutes?",
+  "answer_type": "number",
+  "answer": 144,
+  "known_wrong": [
+   {
+    "value": 89,
+    "tag": "M1"
+   },
+   {
+    "value": 49,
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r13",
+  "skill": "S4",
+  "context": "percent",
+  "question": "What is 30% of 60?",
+  "answer_type": "number",
+  "answer": 18,
+  "known_wrong": [
+   {
+    "value": 2,
+    "tag": "M5"
+   },
+   {
+    "value": 200,
+    "tag": "M5"
+   },
+   {
+    "value": 30,
+    "tag": "M5"
+   }
+  ]
+ },
+ {
+  "id": "r14",
+  "skill": "S4",
+  "context": "survey",
+  "question": "18 out of 24 students chose pizza for the class party. What percent of students chose pizza?",
+  "answer_type": "number",
+  "answer": 75,
+  "known_wrong": [
+   {
+    "value": {
+     "num": 400,
+     "den": 3
+    },
+    "tag": "M5"
+   },
+   {
+    "value": 18,
+    "tag": "M5"
+   }
+  ]
+ },
+ {
+  "id": "r15",
+  "skill": "S4",
+  "context": "sale",
+  "question": "A $40 video game is 25% off. What is the sale price, in dollars?",
+  "answer_type": "number",
+  "answer": 30,
+  "known_wrong": [
+   {
+    "value": 10,
+    "tag": "partial"
+   },
+   {
+    "value": 15,
+    "tag": "M5"
+   }
+  ]
+ },
+ {
+  "id": "r16",
+  "skill": "S4",
+  "context": "percent",
+  "question": "12 is 20% of what number?",
+  "answer_type": "number",
+  "answer": 60,
+  "known_wrong": [
+   {
+    "value": {
+     "num": 12,
+     "den": 5
+    },
+    "tag": "M5"
+   },
+   {
+    "value": {
+     "num": 5,
+     "den": 3
+    },
+    "tag": "M5"
+   }
+  ]
+ },
+ {
+  "id": "r17",
+  "skill": "S5",
+  "context": "shopping",
+  "question": "4 notebooks cost $10. At the same price each, how much do 10 notebooks cost, in dollars?",
+  "answer_type": "number",
+  "answer": 25,
+  "known_wrong": [
+   {
+    "value": 16,
+    "tag": "M1"
+   },
+   {
+    "value": 4,
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r18",
+  "skill": "S5",
+  "context": "maps",
+  "question": "On a map, 2 cm stands for 5 km. How many km does 7 cm stand for?",
+  "answer_type": "number",
+  "answer": {
+   "num": 35,
+   "den": 2
+  },
+  "known_wrong": [
+   {
+    "value": 10,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 14,
+     "den": 5
+    },
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r19",
+  "skill": "S5",
+  "context": "algebra",
+  "question": "y is proportional to x. When x = 3, y = 12. What is y when x = 5?",
+  "answer_type": "number",
+  "answer": 20,
+  "known_wrong": [
+   {
+    "value": 14,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 5,
+     "den": 4
+    },
+    "tag": "M4"
+   }
+  ]
+ },
+ {
+  "id": "r20",
+  "skill": "S5",
+  "context": "cooking",
+  "question": "A soup recipe for 6 people uses 4 cups of broth. How many cups of broth are needed for 9 people?",
+  "answer_type": "number",
+  "answer": 6,
+  "known_wrong": [
+   {
+    "value": 7,
+    "tag": "M1"
+   },
+   {
+    "value": {
+     "num": 27,
+     "den": 2
+    },
+    "tag": "M4"
+   }
+  ]
+ }
+]

@@ -1,0 +1,14 @@
+{
+  "name": "rung",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rung: a Socratic AI math tutor for grade 6 and 7 ratios. One rung at a time.",
+  "type": "module",
+  "scripts": {
+    "build:problems": "node tools/build_problems.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rung · One rung at a time</title>
+  <meta name="description" content="Rung is a free AI math tutor for grade 6 and 7 ratios. It never gives the answer. It gives one hint at a time, and you do the climbing." />
+  <meta property="og:title" content="Rung · One rung at a time" />
+  <meta property="og:description" content="A Socratic AI math tutor for ratios and proportions. Hints, not answers." />
+  <meta name="theme-color" content="#FAF7F2" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M9 3v26M23 3v26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M9 9h14M9 16h14M9 23h14" stroke="var(--rung)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <h1>Rung</h1>
+        <p class="tagline">One rung at a time.</p>
+      </div>
+    </div>
+    <button class="link-btn" id="aboutBtn" type="button">How Rung works</button>
+  </header>
+
+  <main class="wrap">
+    <section class="skills" aria-label="Your skill map">
+      <div class="skills-head">
+        <h2>Your skill map</h2>
+        <span class="muted small">Ratios and proportions</span>
+      </div>
+      <ol class="skill-list" id="skillList"></ol>
+    </section>
+
+    <section class="card problem" id="problemCard" aria-live="polite">
+      <div class="problem-meta">
+        <span class="pill" id="skillPill">Skill</span>
+        <span class="muted small" id="standard"></span>
+      </div>
+      <p class="question" id="question">Loading…</p>
+      <div class="ladder" aria-label="Rungs of help used">
+        <span class="ladder-label small muted">Help used</span>
+        <ol class="rungs" id="rungs">
+          <li data-rung="1"><span class="dot"></span>Nudge</li>
+          <li data-rung="2"><span class="dot"></span>Hint</li>
+          <li data-rung="3"><span class="dot"></span>Example</li>
+          <li data-rung="4"><span class="dot"></span>Walkthrough</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="thread" id="thread" aria-live="polite" aria-label="Conversation with Rung"></section>
+
+    <section class="done card" id="doneCard" hidden>
+      <h2>You mastered every skill on the map!</h2>
+      <p>That took real effort. You can keep practicing, or start fresh.</p>
+      <div class="row">
+        <button class="btn primary" id="practiceBtn" type="button">Keep practicing</button>
+        <button class="btn" id="resetBtn2" type="button">Start over</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="composer" id="composer">
+    <form class="answer-row" id="answerForm" autocomplete="off">
+      <label class="sr-only" for="answerInput">Your answer or question</label>
+      <input id="answerInput" type="text" inputmode="text" maxlength="300"
+             placeholder="Answer, like 12, 5/8, or 3:4" />
+      <button class="btn primary" id="checkBtn" type="submit">Check</button>
+    </form>
+    <div class="row helpers" id="helperRow">
+      <button class="btn" id="hintBtn" type="button">Hint <span class="small" id="hintNext"></span></button>
+      <button class="btn" id="askBtn" type="button">Ask Rung</button>
+    </div>
+    <div class="row" id="nextRow" hidden>
+      <button class="btn primary wide" id="nextBtn" type="button">Next problem →</button>
+    </div>
+    <p class="fine small muted">No accounts. Your progress stays on this device. Please don't type your name or personal info.
+      <button class="link-btn small" id="resetBtn" type="button">Reset progress</button></p>
+  </div>
+
+  <dialog id="about">
+    <form method="dialog">
+      <h2>How Rung works</h2>
+      <p>Rung is a math tutor for grades 6 and 7, built for ratios and proportions. It never just hands over the answer. Each time you ask for help, you climb one rung:</p>
+      <ol>
+        <li><b>Nudge.</b> A question that points you in the right direction.</li>
+        <li><b>Hint.</b> Help aimed at the mistake you probably made.</li>
+        <li><b>Example.</b> A similar problem solved step by step, with different numbers.</li>
+        <li><b>Walkthrough.</b> Your problem, step by step. Then you get a fresh one to try yourself.</li>
+      </ol>
+      <p><b>Code checks the math, not the AI.</b> Every answer is checked with exact arithmetic. When you get one wrong, Rung matches it to common ratio mistakes from math education research and aims the next hint at that mistake.</p>
+      <p><b>The skill map</b> estimates how well you know each skill using Bayesian Knowledge Tracing, a standard method from tutoring research. Rung gives you problems from your weakest skill that's ready for you.</p>
+      <p><b>Privacy.</b> No accounts and no names. Your progress is saved only in this browser. Messages go to the AI to write hints and aren't stored by Rung.</p>
+      <p class="muted small">Built by Nkiru Anizoba as a learning design project. Hints are written by Claude, an AI model made by Anthropic.</p>
+      <div class="row end"><button class="btn primary" value="close">Got it</button></div>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
