@@ -245,8 +245,10 @@ async function onHint() {
   if (state.busy || state.rung >= 4) return;
   state.rung += 1;
   if (state.rung > MAX_RUNG_FOR_WIN) record(false); // the worked example or walkthrough means "not yet"
-  addMsg("student", "Can I have a hint?");
-  await askTutor({ event: "hint", studentLine: "Can I have a hint?" });
+  const ASK_LINE = { 1: "Can I get a nudge?", 2: "Can I have a hint?", 3: "Can I see an example?", 4: "Can you walk me through it?" };
+  const line = ASK_LINE[state.rung];
+  addMsg("student", line);
+  await askTutor({ event: "hint", studentLine: line });
 }
 
 async function onAsk() {

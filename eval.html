@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Rung · Eval</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#FBF7F0; --card:#fff; --ink:#1E2A3A; --muted:#5E6878; --line:#E8E0D2; --good:#1F8A5B; --bad:#B4540A; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#15181E; --card:#20252E; --ink:#EEF1F6; --muted:#A3ACBA; --line:#313846; --good:#52C893; --bad:#F4A65E; } }
+    body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+    h1 { margin: 0 0 4px; font-size: 1.5rem; }
+    p { color: var(--muted); margin: 4px 0 16px; }
+    button { font: inherit; font-weight: 700; padding: 10px 18px; border-radius: 10px; border: 2px solid var(--ink); background: var(--ink); color: var(--bg); cursor: pointer; }
+    button:disabled { opacity: .5; cursor: default; }
+    #status { margin: 12px 0; font-weight: 700; }
+    #summary { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; white-space: pre-wrap; font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--card); border: 1px solid var(--line); }
+    th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 13px; }
+    th { position: sticky; top: 0; background: var(--card); }
+    td.reply { white-space: pre-wrap; max-width: 460px; }
+    .flag { display: inline-block; margin: 0 4px 4px 0; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
+    .ok { color: var(--good); font-weight: 700; }
+    textarea { width: 100%; height: 160px; margin-top: 12px; font: 12px ui-monospace, Menlo, monospace; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Rung eval</h1>
+    <p>Sends 32 scripted student turns to the live tutor, one every few seconds (about 2 to 3 minutes, roughly $0.10 of API credit), and scores each reply in code. Hint quality and tone need a human read of the replies below.</p>
+    <button id="run">Run eval</button>
+    <div id="status"></div>
+    <div id="summary" hidden></div>
+    <table id="results" hidden>
+      <thead><tr><th>Case</th><th>Problem</th><th>Rung</th><th>Student</th><th>Tutor reply</th><th>Checks</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <textarea id="json" readonly hidden aria-label="Results as JSON"></textarea>
+  </main>
+  <script type="module" src="eval.js"></script>
+</body>
+</html>
