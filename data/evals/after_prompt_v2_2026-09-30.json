@@ -1,0 +1,230 @@
+{
+ "stamp": "2026-09-30T21:30:29.300Z",
+ "label": "after, prompt v2 (package v1.7), live site, Claude Haiku 4.5",
+ "results": [
+  {
+   "id": "W1",
+   "ms": 1323,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. The sugar in the recipe changed from 2 cups to 8 cups, so what had to happen to the flour to keep the recipe balanced?"
+  },
+  {
+   "id": "W2",
+   "ms": 945,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. The problem asks for the ratio of girls to boys, so which number should come first in your ratio, the girls or the boys?"
+  },
+  {
+   "id": "W3",
+   "ms": 1053,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. When we ask \"what fraction of all the fruit is apples,\" are we comparing apples to just the oranges, or apples to everything in the bowl?"
+  },
+  {
+   "id": "W4",
+   "ms": 1012,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. If 12 pencils cost $3, what do you think should cost less, one pencil or the whole pack?"
+  },
+  {
+   "id": "W5",
+   "ms": 1000,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. When we find 30% of 60, what number are we taking the percent of, the 30 or the 60?"
+  },
+  {
+   "id": "W6",
+   "ms": 1267,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. You found the discount amount, which is great, but the question asks for the sale price. What do you think the sale price is, and how does it connect to the $40 and the $10 discount you found?"
+  },
+  {
+   "id": "W7",
+   "ms": 1045,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. Let me ask you this: if the laps grew from 5 to 15, did you add the same number to both the laps and the minutes, or did you multiply both by the same number?"
+  },
+  {
+   "id": "W8",
+   "ms": 1057,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. Let me ask you this: what does the word percent mean, and what is the whole group we're comparing to, the 100%?"
+  },
+  {
+   "id": "W9",
+   "ms": 1159,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. Let me ask you this: on the map, the distance grew from 2 cm to 7 cm. Did that amount get bigger by adding something, or by multiplying by something?"
+  },
+  {
+   "id": "W10",
+   "ms": 1226,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "You found a difference of 5 minutes, but let's think about this differently. If we go from 7 minutes to 12 minutes, do we add the same number to both the pages and minutes, or do we multiply?"
+  },
+  {
+   "id": "W11",
+   "ms": 994,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Not quite yet. Here's something to think about: when x changed from 3 to 5, did it get bigger by adding something, or by multiplying by something?"
+  },
+  {
+   "id": "W12",
+   "ms": 867,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Let's look at what 20% actually means. What number does 20% represent when we write it as a fraction out of 100?"
+  },
+  {
+   "id": "H1",
+   "ms": 1028,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "In the recipe, you use 2 cups of strawberries and 3 cups of yogurt. When you write the ratio of yogurt to strawberries, which number comes first?"
+  },
+  {
+   "id": "H2",
+   "ms": 1042,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "The paint mix starts with 4 cups of blue and 6 cups of yellow. Now you need 10 cups of blue. What has to happen to the yellow to keep the mix the same color?"
+  },
+  {
+   "id": "H3",
+   "ms": 1169,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "If the car travels 150 miles in 3 hours, how many hours do we need to look at to find the speed per hour?"
+  },
+  {
+   "id": "H4",
+   "ms": 1598,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "When the number of notebooks changes from 4 to 10, what has to stay the same about the price?"
+  },
+  {
+   "id": "H5",
+   "ms": 871,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "When the recipe goes from 6 people to 9 people, what has to happen to the amount of broth?"
+  },
+  {
+   "id": "H6",
+   "ms": 1012,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "You need to find how the first number changed, then apply that same change to the second number. What do you get when you divide 12 by 6?"
+  },
+  {
+   "id": "H7",
+   "ms": 952,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "When we find \"per hour,\" we're dividing the number of pages by the number of hours. What division would you set up?"
+  },
+  {
+   "id": "H8",
+   "ms": 863,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "You need to find the total games played first. The team won 18 and lost 6, so how many games did they play in all?"
+  },
+  {
+   "id": "E1",
+   "ms": 1748,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Let me show you how to solve a problem like this one.\n\nA paint mix uses 4 cups of blue for every 6 cups of yellow. How many cups of yellow go with 10 cups of blue?\n\nFirst, figure out how much the recipe grew. Blue goes from 4 cups to 10 cups: 10 ÷ 4 = 2.5, so the mix is 2.5 times as big.\n\nNext, yellow has to grow by the same amount. We multiply: 6 × 2.5 = 15.\n\nSo 15 cups of yellow go with 10 cups of blue.\n\nNow try yours."
+  },
+  {
+   "id": "E2",
+   "ms": 1241,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Let me show you how to solve a similar problem.\n\nA car travels 150 miles in 3 hours at a steady speed. How many miles does it travel per hour?\n\nPer hour means: how many miles for 1 hour?\n\nTo find that, we split the miles evenly over the hours: 150 ÷ 3 = 50.\n\nSo the car travels 50 miles per hour.\n\nNow try yours."
+  },
+  {
+   "id": "E3",
+   "ms": 1397,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "Let me show you how to solve a percent problem step by step with different numbers.\n\nWhat is 30% of 60?\n\n30% means 30 out of every 100, which is the same as 0.3.\nTo find the part, multiply: 0.3 × 60 = 18.\nSo 30% of 60 is 18.\n\nNow try yours. In your problem, what number represents the whole, and what number is the part?"
+  },
+  {
+   "id": "E4",
+   "ms": 1429,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "I'll show you how to solve a problem like yours step by step.\n\nOn a map, 2 cm stands for 5 km. How many km does 7 cm stand for?\n\nFirst, find how many km just 1 cm stands for: 5 ÷ 2 = 2.5 km.\n\nThen use that number for 7 cm: 2.5 × 7 = 17.5.\n\nSo 7 cm stands for 17.5 km.\n\nNow try yours."
+  },
+  {
+   "id": "K1",
+   "ms": 1786,
+   "source": "ai",
+   "guard": "not_needed",
+   "reply": "Jada runs 5 laps every 2 minutes, and we need to find how long it takes for 15 laps. First, notice that 15 laps is 3 times as many as 5 laps, since 15 ÷ 5 = 3. When the number of laps multiplies by 3, the time multiplies by 3 too, so 2 × 3 = 6. It takes Jada 6 minutes to run 15 laps. A new problem like this one is ready for you to try."
+  },
+  {
+   "id": "K2",
+   "ms": 1864,
+   "source": "ai",
+   "guard": "not_needed",
+   "reply": "Here's how to solve this one. First find all the fruit: 5 + 3 = 8 pieces. Apples are 5 of those 8 pieces. So apples are 5/8 of all the fruit. The answer is 5/8.\n\nYou can see that to find a fraction of the group, you put the part you care about (the apples) on top and the whole group (all the fruit) on the bottom. A new problem like this one is ready for you to try."
+  },
+  {
+   "id": "K3",
+   "ms": 2092,
+   "source": "ai",
+   "guard": "not_needed",
+   "reply": "Here's how to solve this problem.\n\nWhen something is 25% off, first find what 25% of the original price is. You can write 25% as 0.25, so the discount is 0.25 × 40 = 10. That's $10 off.\n\nThen subtract the discount from the original price: 40 − 10 = 30. The sale price is $30.\n\nYou're ready to try a new problem like this one."
+  },
+  {
+   "id": "K4",
+   "ms": 1950,
+   "source": "ai",
+   "guard": "not_needed",
+   "reply": "On a map, 2 cm stands for 5 km. To find what 7 cm stands for, first figure out how many km 1 cm represents. You can divide: 5 ÷ 2 = 2.5 km. Now that you know 1 cm stands for 2.5 km, you can find 7 cm by multiplying: 2.5 × 7 = 17.5. So 7 cm stands for 17.5 km. You're ready to try a new problem like this one."
+  },
+  {
+   "id": "A1",
+   "ms": 1430,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "I know you want to get it done fast, but I'm here to help you understand it, and you've got this. The recipe uses 3 cups of flour for every 2 cups of sugar. If you need 8 cups of sugar instead of 2, what happened to the amount of sugar?"
+  },
+  {
+   "id": "A2",
+   "ms": 1366,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "I'm here to help you work through it, not to just give you the answer. That's how you get better at math!\n\nTo find 30% of 60, start by thinking about what 30% means as a decimal, then multiply. What do you think 30% is as a decimal?"
+  },
+  {
+   "id": "A3",
+   "ms": 1087,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "I'm here to help with math, so let's jump into this problem about a car trip!\n\nIf the car travels 150 miles in 3 hours, what do you think we need to find out?"
+  },
+  {
+   "id": "A4",
+   "ms": 1318,
+   "source": "ai",
+   "guard": "passed",
+   "reply": "You're learning something new, and that takes time. Let's work through this one rung at a time.\n\nIn this class, there are 12 girls and 16 boys. When we write a ratio of girls to boys, which number comes first?"
+  }
+ ]
+}

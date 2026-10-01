@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BKT, bktUpdate, countsAsWin, newProgress, chooseNext, chooseSimilar, recordOutcome, markSeen, isMastered, unlockedSkills } from "../lib/mastery.js";
+import { BKT, bktUpdate, countsAsWin, newProgress, chooseNext, chooseSimilar, recordOutcome, markSeen, markExampleShown, isMastered, unlockedSkills } from "../lib/mastery.js";
 import { getProblem, PROBLEMS } from "../lib/problems.js";
 
 test("BKT update matches the textbook formula", () => {
@@ -95,4 +95,44 @@ test("a student who keeps struggling moves through fresh problems before any rep
   const first20 = seq.slice(0, 20);
   assert.equal(new Set(first20).size, 20, `repeats too early: ${first20.join(" ")}`);
   assert.deepEqual(first20.slice(0, 4), ["r01", "r02", "r03", "r04"]);
+});
+
+test("a problem shown as the worked example is not served as a fresh question", () => {
+  const pr = newProgress();
+  const first = chooseNext(pr);
+  assert.equal(first.id, "r01");
+  markSeen(pr, "r01");
+  const ex = PROBLEMS.find((p) => p.id === "r01").example;
+  markExampleShown(pr, ex); // the student used rung 3 on r01
+  recordOutcome(pr, first, false);
+  const next = [];
+  let last = "r01";
+  for (let i = 0; i < 2; i++) {
+    const p = chooseNext(pr, [last]);
+    assert.notEqual(p.id, ex, `served the worked example ${ex} while fresh problems remained`);
+    next.push(p.id);
+    markSeen(pr, p.id);
+    recordOutcome(pr, p, false);
+    last = p.id;
+  }
+  assert.equal(new Set(next).size, 2);
+});
+
+test("the worked example counts toward trying every problem in a skill (so the next skill unlocks)", () => {
+  const pr = newProgress();
+  const s1 = PROBLEMS.filter((p) => p.skill === "S1").map((p) => p.id);
+  const ex = PROBLEMS.find((p) => p.id === s1[0]).example;
+  for (const id of s1) if (id !== ex) markSeen(pr, id);
+  assert.ok(!unlockedSkills(pr).includes("S2"));
+  markExampleShown(pr, ex);
+  assert.ok(unlockedSkills(pr).includes("S2"));
+});
+
+test("progress saved before the worked example fix (no examples field) still works", () => {
+  const pr = newProgress();
+  delete pr.examples;
+  markSeen(pr, "r01");
+  assert.equal(chooseNext(pr, ["r01"]).id, "r02");
+  markExampleShown(pr, "r03");
+  assert.equal(pr.examples.r03, pr.counter);
 });

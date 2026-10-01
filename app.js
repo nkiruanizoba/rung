@@ -2,7 +2,7 @@
 
 import { PROBLEMS, SKILLS, getProblem } from "./lib/problems.js";
 import { checkAnswer } from "./lib/checker.js";
-import { BKT, countsAsWin, MAX_RUNG_FOR_WIN, newProgress, chooseNext, chooseSimilar, recordOutcome, markSeen, isMastered, unlockedSkills } from "./lib/mastery.js";
+import { BKT, countsAsWin, MAX_RUNG_FOR_WIN, newProgress, chooseNext, chooseSimilar, recordOutcome, markSeen, markExampleShown, isMastered, unlockedSkills } from "./lib/mastery.js";
 import { fallbackReply, RUNGS, FORMAT_EXAMPLES as EX, PLACEHOLDER } from "./lib/teaching.js";
 
 const STORE_KEY = "rung.progress.v1";
@@ -271,6 +271,11 @@ async function askTutor({ event, studentAnswer, message, studentLine }) {
   renderControls();
   const typing = addTyping();
   const rung = state.rung;
+  if (rung === 3 && state.problem.example) {
+    // the student is about to see this problem solved, so don't serve it later as a fresh question
+    markExampleShown(state.progress, state.problem.example);
+    saveProgress();
+  }
   let reply;
   let note = "";
   try {
